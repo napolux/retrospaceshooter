@@ -14,7 +14,6 @@ locale.setLocalization(COMMON.LOCALE)
 -- requiring game states
 require "states.menu"
 
-
 function love.load()
     Gamestate.registerEvents()
 
