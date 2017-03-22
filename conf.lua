@@ -1,4 +1,3 @@
--- A LÖVE iOS game
 -- This is the main game file
 io.stdout:setvbuf("no")
 
