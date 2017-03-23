@@ -20,10 +20,6 @@ function love.load()
     -- go to menu state
     Gamestate.switch(menu)
 
-    -- Screen size, we got it once, and use it a lot :-)
-    COMMON.SCREEN_W     = love.graphics.getWidth()
-    COMMON.SCREEN_H     = love.graphics.getHeight()
-
     -- Random seed
     love.math.setRandomSeed(love.timer.getTime())
 end

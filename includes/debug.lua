@@ -4,9 +4,9 @@
 function showDebugInfo() 
     if IS_DEBUG then
         love.graphics.print("FPS: " .. tostring(love.timer.getFPS()) .. " " ..
-                            "SCREEN: " .. COMMON.SCREEN_W .. "x" .. COMMON.SCREEN_H .. " " ..
+                            "SCREEN: " .. love.graphics.getWidth() .. "x" .. love.graphics.getHeight() .. " " ..
                             "GS: " .. Gamestate.current().name .. " " ..
-                            "LANG: " .. COMMON.LOCALE, 10, COMMON.SCREEN_H - 20)        
+                            "LANG: " .. COMMON.LOCALE, 10, love.graphics.getHeight() - 20)        
     end
 end
 
@@ -16,3 +16,4 @@ function debugMsg(msg)
         print("[DEBUG]: " .. tostring(msg))
     end
 end
+
