@@ -3,6 +3,7 @@
 -- We'll show useful info only if debug is active
 function showDebugInfo() 
     if IS_DEBUG then
+        love.graphics.setColor(255, 255, 255, 255)
         love.graphics.print("FPS: " .. tostring(love.timer.getFPS()) .. " " ..
                             "SCREEN: " .. love.graphics.getWidth() .. "x" .. love.graphics.getHeight() .. " " ..
                             "GS: " .. Gamestate.current().name .. " " ..

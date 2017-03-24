@@ -32,7 +32,7 @@ Background = Class {
     draw = function(self)
         for i = 1, #self.stars do
             love.graphics.push()
-            love.graphics.setColor(255, 255, 255, 255 / self.stars[i].size)
+            love.graphics.setColor(0, 255, 0, 255 / self.stars[i].size)
             -- We modify the drawn positions with the parallax.
             love.graphics.rectangle("fill", self.stars[i].x, self.stars[i].y, self.baseStarSize / self.stars[i].size, self.baseStarSize / self.stars[i].size)
             love.graphics.pop()
