@@ -8,8 +8,8 @@ Background = Class {
         self.screenHeight = love.graphics.getHeight() 
         self.baseStarSize = 5
         
-        self.speed = 75
-        self.density = density
+        self.speed = 100
+        self.density = 500
         -- stars
         self.stars = {}
         -- This loop will set up all the stars with their position, size and alpha generated randomly.

@@ -10,7 +10,7 @@ local suit  = require "libraries.suit"
 local bg    = require "resources.common.background"
 
 function menu:init()
-    bg.init(bg, 500)
+    bg.init(bg)
 end
 
 function menu:enter(previous, endData)
