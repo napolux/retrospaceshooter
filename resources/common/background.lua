@@ -9,7 +9,7 @@ Background = Class {
         self.baseStarSize = 5
         
         self.speed = 100
-        self.density = 500
+        self.density = 600
         -- stars
         self.stars = {}
         -- This loop will set up all the stars with their position, size and alpha generated randomly.

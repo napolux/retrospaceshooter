@@ -21,8 +21,11 @@ function love.load()
     -- go to menu state
     Gamestate.switch(menu)
 
-    -- Random seed
+    -- random seed
     love.math.setRandomSeed(love.timer.getTime())
+
+    -- keyboard repeat mode
+    love.keyboard.setKeyRepeat(true)
 end
 
 function love.update(dt)

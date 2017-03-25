@@ -8,8 +8,12 @@ local Timer = require "libraries.hump.timer"
 -- Background animation
 local bg    = require "resources.common.background"
 
+-- Our player
+local ship  = require "resources.sprites.ship"
+
 function game:init()
     bg.init(bg)
+    ship.init(ship)
 end
 
 function game:enter(previous, endData)
@@ -21,8 +25,16 @@ end
 function game:update(dt)
     Timer.update(dt)
     bg.update(bg, dt)
+    ship.update(ship, dt)
 end
 
 function game:draw()
     bg.draw(bg)
+    ship.draw(ship)
+end
+
+
+-- Keyboard controls...
+function game:keypressed(key)
+    ship.keypressed(ship, key)
 end
