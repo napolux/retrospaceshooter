@@ -36,5 +36,5 @@ end
 
 -- Keyboard controls...
 function game:keypressed(key)
-    ship.keypressed(ship, key)
+
 end
