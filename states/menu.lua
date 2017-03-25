@@ -22,13 +22,13 @@ end
 function menu:createGUI()
     suit.layout:reset((self.screenWidth / 2) - 250, self.screenHeight - 400, 20, 20)    
     -- put a button at the layout origin
-    gotoGameState = suit.Button("Start!", suit.layout:row(500, 50))
+    gotoGameState = suit.Button("START!", suit.layout:row(500, 50))
 
     if gotoGameState.hit then 
         Gamestate.switch(game)
     end 
 
-    quitGame = suit.Button("Quit", suit.layout:row(500, 50))
+    quitGame = suit.Button("QUIT", suit.layout:row(500, 50))
 
     if quitGame.hit then         
         love.event.quit()

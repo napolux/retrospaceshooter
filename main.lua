@@ -16,6 +16,7 @@ require "states.menu"
 require "states.game"
 
 function love.load()
+    -- registering events
     Gamestate.registerEvents()
 
     -- go to menu state
@@ -26,6 +27,11 @@ function love.load()
 
     -- keyboard repeat mode
     love.keyboard.setKeyRepeat(true)
+
+    -- fonts
+    font = love.graphics.newFont("resources/fonts/arcadefont.ttf", 20)
+    love.graphics.setFont(font)
+
 end
 
 function love.update(dt)
