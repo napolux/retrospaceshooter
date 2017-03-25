@@ -12,8 +12,10 @@ function love.conf(t)
     t.window.icon = nil                -- Filepath to an image to use as the window's icon (string)
 
     t.window.borderless = false        -- Remove all border visuals from the window (boolean)
+    t.window.width = 1280              -- The window width (number)
+    t.window.height = 800              -- The window height (number)
     t.window.resizable = false         -- Let the window be user-resizable (boolean)
-    t.window.fullscreen = true
+    t.window.fullscreen = false
     
     t.window.vsync = true              -- Enable vertical sync (boolean)
     t.window.msaa = 0                  -- The number of samples to use with multi-sampled antialiasing (number)

@@ -3,7 +3,7 @@ Class = require "libraries.hump.class"
 
 Background = Class { 
     
-    init = function(self, density)
+    init = function(self)
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight() 
         self.baseStarSize = 5

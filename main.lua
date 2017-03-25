@@ -29,7 +29,7 @@ function love.load()
     love.keyboard.setKeyRepeat(true)
 
     -- fonts
-    font = love.graphics.newFont("resources/fonts/arcadefont.ttf", 20)
+    font = love.graphics.newFont("resources/fonts/arcadefont.ttf", 40)
     love.graphics.setFont(font)
 
 end

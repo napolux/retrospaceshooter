@@ -7,7 +7,7 @@ function showDebugInfo()
         love.graphics.print("FPS: " .. tostring(love.timer.getFPS()) .. " " ..
                             "SCREEN: " .. love.graphics.getWidth() .. "x" .. love.graphics.getHeight() .. " " ..
                             "GS: " .. Gamestate.current().name .. " " ..
-                            "LANG: " .. COMMON.LOCALE, 10, love.graphics.getHeight() - 30)        
+                            "LANG: " .. COMMON.LOCALE, 10, love.graphics.getHeight() - 50)        
     end
 end
 
