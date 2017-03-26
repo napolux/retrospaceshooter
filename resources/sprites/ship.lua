@@ -8,6 +8,7 @@ Ship = Class {
 
         -- ship data
         self.lives        = 3
+        self.sprite     = love.graphics.newImage("resources/images/ship.png")
 
         -- physics data
         self.friction = 5
@@ -15,7 +16,7 @@ Ship = Class {
         self.vel      = {x = 0, y = 0}
         
         -- starting position and size
-        self.size = {w = 60, h = 60}
+        self.size = {w = 40, h = 60}
         self.pos = {x = (self.screenWidth / 2) - (self.size.w / 2), y = self.screenHeight - self.size.h - 50}
     end; 
 
@@ -33,8 +34,8 @@ Ship = Class {
 
     draw = function(self)
         love.graphics.push()
-        love.graphics.setColor(255, 255, 0, 255)
-        love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)
+        love.graphics.setColor(255,255,255,255);
+        love.graphics.draw(self.sprite, self.pos.x, self.pos.y)
         love.graphics.pop()
     end;
 
