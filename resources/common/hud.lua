@@ -1,10 +1,11 @@
--- score class
+-- hud class
 Class = require "libraries.hump.class"
 
-Score = Class { 
+Hud = Class { 
     
     init = function(self)
-        self.value = "00000000"
+        self.score = "00000000"
+        self.highScore = "00010000"
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight()
     end; 
@@ -15,10 +16,9 @@ Score = Class {
 
     draw = function(self)
         love.graphics.setColor(255, 255, 255, 255)
-        love.graphics.printf(self.value, 0, 20, self.screenWidth - 20, "right")
-
-        -- love.graphics.print(self.value, self.screenWidth - 320, 30)       
+        love.graphics.printf("SCORE\n" .. self.score, 20, 20, self.screenWidth - 20, "left")
+        love.graphics.printf("HIGH SCORE\n" .. self.highScore, 0, 20, self.screenWidth - 20, "right")
     end;
 }
 
-return Score
+return Hud

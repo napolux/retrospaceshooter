@@ -11,14 +11,14 @@ local bg    = require "resources.common.background"
 -- Our player
 local ship  = require "resources.sprites.ship"
 
--- Our score!
+-- Our hud!
 
-local score = require "resources.common.score"
+local hud = require "resources.common.hud"
 
 function game:init()
     bg.init(bg)
     ship.init(ship)
-    score.init(score)
+    hud.init(hud)
 end
 
 function game:enter(previous, endData)
@@ -31,13 +31,13 @@ function game:update(dt)
     Timer.update(dt)
     bg.update(bg, dt)
     ship.update(ship, dt)
-    score.update(score)
+    hud.update(hud)
 end
 
 function game:draw()
     bg.draw(bg)
     ship.draw(ship)
-    score.draw(score)
+    hud.draw(hud)
 end
 
 

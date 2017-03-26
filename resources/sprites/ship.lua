@@ -6,16 +6,17 @@ Ship = Class {
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight() 
 
-        
+        -- ship data
+        self.lives        = 3
+
         -- physics data
-        self.friction = 4
-        self.speed    = 2000      
+        self.friction = 5
+        self.speed    = 3000      
         self.vel      = {x = 0, y = 0}
         
         -- starting position and size
         self.size = {w = 60, h = 60}
         self.pos = {x = (self.screenWidth / 2) - (self.size.w / 2), y = self.screenHeight - self.size.h - 50}
-        debugMsg("Ship init: " .. (self.screenWidth / 2) - (self.size.w / 2))
     end; 
 
     update = function(self, dt)
