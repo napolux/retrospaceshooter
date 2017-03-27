@@ -1,14 +1,19 @@
 -- Ship class
 Ship = require "libraries.hump.class"
 
+local bullet = require "resources.sprites.bullet"
+local Timer  = require "libraries.hump.timer"
+
 Ship = Class { 
     init = function(self)
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight() 
 
         -- ship data
-        self.lives        = 3
-        self.sprite     = love.graphics.newImage("resources/images/ship.png")
+        self.lives    = 3
+        self.sprite   = love.graphics.newImage("resources/images/ship.png")
+        self.canShoot = true 
+        self.shootSpeed = 1 -- in seconds
 
         -- physics data
         self.friction = 5
@@ -21,13 +26,14 @@ Ship = Class {
     end; 
 
     update = function(self, dt)
+        Timer.update(dt)
         self.physics(self, dt)
         self.move(self, dt)
     end;
 
     physics = function(self, dt) 
-        self.pos.x   = self.pos.x + (self.vel.x * dt)
-        self.pos.y   = self.pos.y + (self.vel.y * dt)
+        self.pos.x = self.pos.x + (self.vel.x * dt)
+        self.pos.y = self.pos.y + (self.vel.y * dt)
         self.vel.x = self.vel.x * (1 - math.min(dt * self.friction, 1))
         self.vel.y = self.vel.y * (1 - math.min(dt * self.friction, 1))
     end;
@@ -58,6 +64,15 @@ Ship = Class {
 
         -- managing screen corners
         self.manageCorners(self)
+
+        -- phew, phew!
+        if love.keyboard.isDown("z") and self.canShoot then
+            self.canShoot = false
+            debugMsg("shoot!")
+            Timer.after(self.shootSpeed, function() 
+                self.canShoot = true
+            end)
+        end
     end;
 
     manageCorners = function(self) 

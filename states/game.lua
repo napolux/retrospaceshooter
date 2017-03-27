@@ -30,8 +30,8 @@ end
 function game:update(dt)
     Timer.update(dt)
     bg.update(bg, dt)
-    ship.update(ship, dt)
     hud.update(hud, ship)
+    ship.update(ship, dt)
 end
 
 function game:draw()
