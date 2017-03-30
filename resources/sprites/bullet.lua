@@ -7,16 +7,13 @@ Bullet = Class {
         self.screenHeight = love.graphics.getHeight() 
 
         -- physics data
-        self.friction = 5
-        self.speed    = 3000      
-        self.vel      = {x = 0, y = 0}
+        self.friction = 0
+        self.speed    = 500      
+        self.vel      = {x = 0, y = -self.speed}
         
         -- starting position and size
-        self.size = {w = 5, h = 20}
+        self.size = {w = 5, h = 30}
         self.pos  = {x = bullet_x, y = bullet_y}
-
-        -- bullet data
-        self.sprite = love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)
     end; 
 
     update = function(self, dt)
@@ -34,7 +31,7 @@ Bullet = Class {
     draw = function(self)
         love.graphics.push()
         love.graphics.setColor(255,255,255,255);
-        love.graphics.draw(self.sprite, self.pos.x, self.pos.y)
+        love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)
         love.graphics.pop()
     end;
 

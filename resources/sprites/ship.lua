@@ -1,6 +1,5 @@
 -- Ship class
 Ship = require "libraries.hump.class"
-
 local bullet = require "resources.sprites.bullet"
 local Timer  = require "libraries.hump.timer"
 
@@ -13,22 +12,30 @@ Ship = Class {
         self.lives    = 3
         self.sprite   = love.graphics.newImage("resources/images/ship.png")
         self.canShoot = true 
-        self.shootSpeed = 1 -- in seconds
+        self.shootSpeed = 0.5 -- in seconds
 
         -- physics data
         self.friction = 5
         self.speed    = 3000      
         self.vel      = {x = 0, y = 0}
-        
+
+        -- bullets
+        self.bullets  = {}
+
         -- starting position and size
         self.size = {w = 40, h = 60}
-        self.pos = {x = (self.screenWidth / 2) - (self.size.w / 2), y = self.screenHeight - self.size.h - 50}
+        self.pos  = {x = (self.screenWidth / 2) - (self.size.w / 2), y = self.screenHeight - self.size.h - 50}
     end; 
 
     update = function(self, dt)
         Timer.update(dt)
         self.physics(self, dt)
         self.move(self, dt)
+
+        -- updating bullets, if any
+        for index, bullet in pairs(self.bullets) do 
+            bullet.update(bullet, dt)
+        end
     end;
 
     physics = function(self, dt) 
@@ -42,6 +49,12 @@ Ship = Class {
         love.graphics.push()
         love.graphics.setColor(255,255,255,255);
         love.graphics.draw(self.sprite, self.pos.x, self.pos.y)
+
+        -- drawing bullets, if any
+        for index, bullet in pairs(self.bullets) do 
+            bullet.draw(bullet)
+        end
+        
         love.graphics.pop()
     end;
 
@@ -68,11 +81,21 @@ Ship = Class {
         -- phew, phew!
         if love.keyboard.isDown("z") and self.canShoot then
             self.canShoot = false
-            debugMsg("shoot!")
+            self.shoot(self)
             Timer.after(self.shootSpeed, function() 
                 self.canShoot = true
             end)
         end
+    end;
+
+
+    shoot = function(self) 
+        bullet1 = Bullet()
+        bullet2 = Bullet()
+        bullet1.init(bullet1, self.pos.x + 5, self.pos.y)
+        bullet2.init(bullet2, self.pos.x + self.size.w - 10, self.pos.y)
+        table.insert(self.bullets, bullet1)
+        table.insert(self.bullets, bullet2)
     end;
 
     manageCorners = function(self) 
