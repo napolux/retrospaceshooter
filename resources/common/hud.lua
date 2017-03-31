@@ -22,6 +22,11 @@ Hud = Class {
         love.graphics.printf(locale.getLocalized("hud.score")   .. "\n" .. self.score,     20, 20, self.screenWidth - 20, "left")
         love.graphics.printf(locale.getLocalized("hud.hiscore") .. "\n" .. self.highScore,  0, 20, self.screenWidth - 20, "right")
     end;
+
+    drawLevelIntro = function(self, levelNumber)
+        love.graphics.setColor(255, 255, 255, 255)    
+        love.graphics.printf(locale.getLocalized("hud.level") .. " " .. levelNumber,     0, self.screenHeight / 2, self.screenWidth, "center")
+    end
 }
 
 return Hud

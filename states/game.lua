@@ -12,13 +12,29 @@ local bg    = require "resources.common.background"
 local ship  = require "resources.sprites.ship"
 
 -- Our hud!
-
 local hud = require "resources.common.hud"
 
 function game:init()
     bg.init(bg)
     ship.init(ship)
     hud.init(hud, ship)
+
+    self.maxLevels = 20
+
+    -- levels 
+    self.levels = {}
+
+    for i = 1, self.maxLevels do
+        self.levels[i] = {
+            levelName = i,
+            levelSize = 25 * i    
+        }
+    end
+
+    self.showLevelIntro = true
+
+    -- current level
+    self.currentLevel = self.levels[1]
 end
 
 function game:enter(previous, endData)
@@ -38,6 +54,11 @@ function game:draw()
     bg.draw(bg)
     ship.draw(ship)
     hud.draw(hud)
+
+    if self.showLevelIntro then
+        hud.drawLevelIntro(hud, self.currentLevel.levelName)
+        Timer.after(10, function() self.showLevelIntro = false self.enemiesShow = true end)
+    end
 end
 
 

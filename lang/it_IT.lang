@@ -1,3 +1,4 @@
 hud.score=PUNTI
 hud.hiscore=RECORD
 hud.lives=VITE
+hud.level=LIVELLO
