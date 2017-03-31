@@ -5,6 +5,7 @@ Bullet = Class {
     init = function(self, bullet_x, bullet_y)
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight() 
+        self.sound        = love.audio.newSource("resources/sounds/shoot.wav", "static")
 
         -- physics data
         self.friction = 0
@@ -14,6 +15,8 @@ Bullet = Class {
         -- starting position and size
         self.size = {w = 5, h = 30}
         self.pos  = {x = bullet_x, y = bullet_y}
+
+        self.sound:play()
     end; 
 
     update = function(self, dt)
