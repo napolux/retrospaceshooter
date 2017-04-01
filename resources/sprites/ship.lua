@@ -8,11 +8,13 @@ Ship = Class {
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight() 
 
+        self.bulletTimer  = Timer.new()
+
         -- ship data
         self.lives    = 3
         self.sprite   = love.graphics.newImage("resources/images/ship.png")
         self.canShoot = true 
-        self.shootSpeed = 0.5 -- in seconds
+        self.shootSpeed = 0.3 -- in seconds
 
         -- physics data
         self.friction = 5
@@ -28,7 +30,7 @@ Ship = Class {
     end; 
 
     update = function(self, dt)
-        Timer.update(dt)
+        self.bulletTimer:update(dt)
         self.physics(self, dt)
         self.move(self, dt)
 
@@ -90,7 +92,7 @@ Ship = Class {
         if love.keyboard.isDown("z") and self.canShoot then
             self.canShoot = false
             self.shoot(self)
-            Timer.after(self.shootSpeed, function() 
+            self.bulletTimer:after(self.shootSpeed, function() 
                 self.canShoot = true
             end)
         end

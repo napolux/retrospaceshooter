@@ -1,31 +1,25 @@
--- Enemies class
-Enemies = require "libraries.hump.class"
-local Timer  = require "libraries.hump.timer"
+-- Enemy class
+Enemy = require "libraries.hump.class"
+local Timer = require "libraries.hump.timer"
 
-Enemies = Class { 
+Enemy = Class { 
     init = function(self)
         self.screenWidth  = love.graphics.getWidth()
         self.screenHeight = love.graphics.getHeight() 
 
         -- physics data
-        self.friction = 5
-        self.speed    = 3000      
-        self.vel      = {x = 0, y = 0}
+        self.friction = 0
+        self.speed    = love.math.random(100, 500)      
+        self.vel      = {x = love.math.random(-200, 200), y = self.speed}
 
         -- starting position and size
-        self.size = {w = 40, h = 60}
-        self.pos  = {x = (self.screenWidth / 2) - (self.size.w / 2), y = self.screenHeight - self.size.h - 50}
+        self.size = {w = 60, h = 60}
+        self.pos  = {x = love.math.random(self.size.w, self.screenWidth - self.size.w), y = -50}
     end; 
 
     update = function(self, dt)
         Timer.update(dt)
         self.physics(self, dt)
-        self.move(self, dt)
-
-        -- updating bullets, if any
-        for index, bullet in pairs(self.bullets) do 
-            debugMsg("Bullet table size: " .. table.getn(self.bullets))
-        end
     end;
 
     physics = function(self, dt) 
@@ -37,10 +31,11 @@ Enemies = Class {
 
     draw = function(self)
         love.graphics.push()
-
+        love.graphics.setColor(0,255,0,255);
+        love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)  
         love.graphics.pop()
     end;
   
 }
 
-return Bullet
+return Enemy

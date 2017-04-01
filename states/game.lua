@@ -12,7 +12,7 @@ local bg    = require "resources.common.background"
 local ship  = require "resources.sprites.ship"
 
 -- Enemies
-local enemies = require "resources.sprites.enemies"
+local enemy = require "resources.sprites.enemy"
 
 -- Our hud!
 local hud = require "resources.common.hud"
@@ -22,8 +22,13 @@ function game:init()
     ship.init(ship)
     hud.init(hud, ship)
 
-    self.maxLevels    = 20
-    self.enemiesSpawn = false
+    self.maxLevels = 20
+    self.gameTimer    = Timer.new()
+    self.enemiesTimer = Timer.new()
+    
+    -- enemies
+    self.enemiesCanSpawn = false
+    self.enemies  = {}
 
     -- levels 
     self.levels = {}
@@ -39,21 +44,36 @@ function game:init()
 
     -- current level
     self.currentLevel = self.levels[1]
-
-    enemies.init(enemies, self.currentLevel)
 end
 
 function game:enter(previous, endData)
     self.from = previous
     self.screenWidth  = love.graphics.getWidth()
     self.screenHeight = love.graphics.getHeight() 
+
+    -- enemies!
+    self.enemiesTimer:every(3, function() 
+        if self.enemiesCanSpawn and #self.enemies < self.currentLevel.levelSize then
+            enemy = Enemy()
+            enemy.init(enemy)
+            table.insert(self.enemies, enemy)
+        end
+    end)
 end
 
 function game:update(dt)
-    Timer.update(dt)
+    self.gameTimer:update(dt)
+    self.enemiesTimer:update(dt)
+
     bg.update(bg, dt)
     hud.update(hud, ship)
     ship.update(ship, dt)
+
+    -- updating enemies, if any
+    for index, enemy in pairs(self.enemies) do 
+        enemy.update(enemy, dt)
+    end
+
 end
 
 function game:draw()
@@ -61,11 +81,16 @@ function game:draw()
     ship.draw(ship)
     hud.draw(hud)
 
+    -- drawing enemies, if any
+    for index, enemy in pairs(self.enemies) do 
+        enemy.draw(enemy)
+    end
+
     if self.showLevelIntro then
         hud.drawLevelIntro(hud, self.currentLevel.levelName)
-        Timer.after(10, function() 
-            self.showLevelIntro = false 
-            self.enemiesSpawn   = true 
+        self.gameTimer:after(10, function() 
+            self.showLevelIntro  = false 
+            self.enemiesCanSpawn = true 
         end)
     end
 end

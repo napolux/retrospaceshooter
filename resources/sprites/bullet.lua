@@ -24,7 +24,6 @@ Bullet = Class {
 
     update = function(self, dt)
         self.physics(self, dt)
-        self.move(self, dt)
     end;
 
     physics = function(self, dt) 
@@ -39,10 +38,6 @@ Bullet = Class {
         love.graphics.setColor(255,255,255,255);
         love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)
         love.graphics.pop()
-    end;
-
-    move = function(self, dt)
-
     end;
 }
 
