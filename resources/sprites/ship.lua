@@ -37,14 +37,10 @@ Ship = Class {
         -- updating bullets, if any
         for index, bullet in pairs(self.bullets) do 
             bullet.update(bullet, dt)
-
             -- cleaning up bullets
             if(bullet.pos.y < 0) then
                 table.remove(self.bullets, index)
             end
-
-            debugMsg("Bullet table size: " .. table.getn(self.bullets))
-
         end
     end;
 

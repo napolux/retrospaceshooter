@@ -53,10 +53,11 @@ function game:enter(previous, endData)
 
     -- enemies!
     self.enemiesTimer:every(3, function() 
-        if self.enemiesCanSpawn and #self.enemies < self.currentLevel.levelSize then
+        if self.enemiesCanSpawn then
             enemy = Enemy()
             enemy.init(enemy)
             table.insert(self.enemies, enemy)
+            debugMsg("Enemies table size: " .. table.getn(self.enemies))
         end
     end)
 end
@@ -72,8 +73,12 @@ function game:update(dt)
     -- updating enemies, if any
     for index, enemy in pairs(self.enemies) do 
         enemy.update(enemy, dt)
-    end
 
+        -- cleaning up enemies
+        if(enemy.pos.y > self.screenHeight) then
+            table.remove(self.enemies, index)
+        end
+    end
 end
 
 function game:draw()
