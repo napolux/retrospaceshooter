@@ -2,12 +2,13 @@
 menu = {}
 menu.name = "Menu"
 
--- Timer
-local Timer = require "libraries.hump.timer"
 -- GUI library
 local suit  = require "libraries.suit"
 -- Background animation
 local bg    = require "resources.common.background"
+
+locale = require "libraries.locale.locale"
+
 
 function menu:init()
     bg.init(bg)
@@ -36,12 +37,21 @@ function menu:createGUI()
 end
 
 function menu:update(dt)
-    Timer.update(dt)
     bg.update(bg, dt)
     self:createGUI()
 end
 
 function menu:draw()
     bg.draw(bg)
+
+    -- our "logo", with huge font!
+    font = love.graphics.newFont("resources/fonts/arcadefont.ttf", 100)
+    love.graphics.setFont(font)
+    love.graphics.setColor(255, 255, 255, 255)    
+    love.graphics.printf(locale.getLocalized("hud.gameName"),  0, 150, self.screenWidth, "center")
+    -- set font size back to normal
+    font = love.graphics.newFont("resources/fonts/arcadefont.ttf", 30)
+    love.graphics.setFont(font)
+
     suit.draw()
 end

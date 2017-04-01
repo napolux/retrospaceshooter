@@ -2,3 +2,4 @@ hud.score=SCORE
 hud.hiscore=HIGH SCORE
 hud.lives=LIVES
 hud.level=LEVEL
+hud.gameName=RETRO SPACE SHOOTER
