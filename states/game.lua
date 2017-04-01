@@ -83,7 +83,6 @@ end
 
 function game:draw()
     bg.draw(bg)
-    ship.draw(ship)
     hud.draw(hud)
 
     -- drawing enemies, if any
@@ -98,6 +97,8 @@ function game:draw()
             self.enemiesCanSpawn = true 
         end)
     end
+
+    ship.draw(ship)
 end
 
 

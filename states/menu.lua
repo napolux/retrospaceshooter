@@ -43,10 +43,10 @@ end
 
 function menu:draw()
     bg.draw(bg)
-
     -- our "logo", with huge font!
     font = love.graphics.newFont("resources/fonts/arcadefont.ttf", 100)
     love.graphics.setFont(font)
+    
     love.graphics.setColor(255, 255, 255, 255)    
     love.graphics.printf(locale.getLocalized("hud.gameName"),  0, 150, self.screenWidth, "center")
     -- set font size back to normal
